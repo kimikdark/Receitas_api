@@ -50,8 +50,16 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // Picasso for image loading
-    implementation("com.squareup.picasso:picasso:2.71828")
+    // Coil for image loading (Kotlin-first)
+    implementation("io.coil-kt:coil:2.5.0")
+
+    // Navigation & UI Components
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
+
+    // ViewModel for architecture
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
