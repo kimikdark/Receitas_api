@@ -9,6 +9,20 @@
         android:id="@+id/categoryListFragment"
         android:name="com.example.receitas.fragments.CategoryListFragment"
         android:label="fragment_category_list"
-        tools:layout="@layout/fragment_category_list" />
+        tools:layout="@layout/fragment_category_list" >
+        <action
+            android:id="@+id/action_categoryListFragment_to_mealListFragment"
+            app:destination="@id/mealListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mealListFragment"
+        android:name="com.example.receitas.fragments.MealListFragment"
+        android:label="fragment_meal_list"
+        tools:layout="@layout/fragment_meal_list" >
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
