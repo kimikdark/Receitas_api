@@ -2,18 +2,16 @@ package com.example.receitas.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.receitas.R
 import com.example.receitas.databinding.ItemCategoryBinding
 import com.example.receitas.models.Category
 
-class CategoryAdapter(
-    private var categories: List<Category>,
-    private val onItemClick: (Category) -> Unit
-) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-
-    inner class CategoryViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
+class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
+    ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding = ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,25 +19,33 @@ class CategoryAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = categories[position]
-        holder.binding.categoryName.text = category.strCategory
+        val category = getItem(position)
+        holder.bind(category)
+        holder.itemView.setOnClickListener { onItemClick(category) }
+    }
 
-        // Usa a Coil para carregar a imagem a partir do URL.
-        holder.binding.categoryThumb.load(category.strCategoryThumb) {
-            crossfade(true)
-            placeholder(R.drawable.gradient_overlay)
-            error(R.drawable.gradient_overlay)
-        }
-
-        holder.itemView.setOnClickListener {
-            onItemClick(category)
+    class CategoryViewHolder(private val binding: ItemCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        
+        fun bind(category: Category) {
+            binding.categoryName.text = category.strCategory
+            binding.categoryThumb.load(category.strCategoryThumb) {
+                crossfade(true)
+                placeholder(R.drawable.gradient_scrim)
+                error(R.drawable.gradient_scrim)
+            }
         }
     }
 
-    override fun getItemCount() = categories.size
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Category>() {
+            override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+                return oldItem.idCategory == newItem.idCategory
+            }
 
-    fun updateCategories(newCategories: List<Category>) {
-        categories = newCategories
-        notifyDataSetChanged()
+            override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

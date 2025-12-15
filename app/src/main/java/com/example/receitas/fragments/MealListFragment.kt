@@ -40,7 +40,7 @@ class MealListFragment : Fragment() {
         }
 
         binding.recyclerViewMeals.apply {
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = GridLayoutManager(context, 1) // Alterado para 1 coluna
             adapter = mealListAdapter
         }
 
