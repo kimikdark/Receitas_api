@@ -11,17 +11,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/clear_list_button"
+        app:layout_constraintBottom_toTopOf="@+id/clear_purchased_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/clear_list_button"
+        android:id="@+id/clear_purchased_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Limpar Lista"
+        android:text="Limpar Comprados"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

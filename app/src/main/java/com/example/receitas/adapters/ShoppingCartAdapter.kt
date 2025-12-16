@@ -1,5 +1,6 @@
 package com.example.receitas.adapters
 
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class ShoppingCartAdapter(private val onCheckboxClicked: (ShoppingListItem) -> U
             binding.ingredientTextView.text = "${item.ingredient} (${item.measure})"
             binding.itemCheckBox.isChecked = item.isChecked
 
-            updateTextStrikeThrough(binding.ingredientTextView, item.isChecked)
+            updateVisuals(binding.ingredientTextView, item.isChecked)
 
             binding.itemCheckBox.setOnClickListener {
                 val updatedItem = item.copy(isChecked = binding.itemCheckBox.isChecked)
@@ -38,11 +39,13 @@ class ShoppingCartAdapter(private val onCheckboxClicked: (ShoppingListItem) -> U
             }
         }
 
-        private fun updateTextStrikeThrough(textView: TextView, isChecked: Boolean) {
+        private fun updateVisuals(textView: TextView, isChecked: Boolean) {
             if (isChecked) {
                 textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                textView.setTextColor(Color.LTGRAY)
             } else {
                 textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                textView.setTextColor(Color.BLACK) // Ou a sua cor de texto padrão
             }
         }
     }

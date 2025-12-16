@@ -24,24 +24,30 @@ class ShoppingListViewModel(application: Application) : AndroidViewModel(applica
 
     fun addItems(items: List<ShoppingListItem>) {
         repository.addItems(items)
-        loadItems() // Recarrega a lista para refletir as adições
+        loadItems()
     }
 
     fun updateItem(item: ShoppingListItem) {
         repository.updateItem(item)
-        // Apenas atualiza o item na lista localmente para uma resposta mais rápida da UI
         val currentList = _shoppingListItems.value?.toMutableList() ?: mutableListOf()
         val index = currentList.indexOfFirst { it.id == item.id }
         if (index != -1) {
             currentList[index] = item
             _shoppingListItems.value = currentList
         } else {
-            loadItems() // Se não encontrar, recarrega a lista toda
+            loadItems()
         }
     }
 
-    fun clearList() {
-        repository.clearList()
-        _shoppingListItems.value = emptyList()
+    fun removeItem(item: ShoppingListItem) {
+        repository.removeItem(item)
+        val currentList = _shoppingListItems.value?.toMutableList() ?: mutableListOf()
+        currentList.removeAll { it.id == item.id }
+        _shoppingListItems.value = currentList
+    }
+
+    fun clearPurchasedItems() {
+        repository.clearPurchasedItems()
+        loadItems()
     }
 }

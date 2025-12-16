@@ -67,7 +67,7 @@ class RecipeDetailFragment : Fragment() {
                 binding.addToShoppingListButton.setOnClickListener {
                     val itemsToAdd = ingredients.map { (ingredient, measure) ->
                         ShoppingListItem(
-                            id = System.currentTimeMillis(), // Unique ID
+                            id = 0, // ID será gerado pelo Repository
                             ingredient = ingredient,
                             measure = measure
                         )
