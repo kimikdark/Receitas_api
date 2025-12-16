@@ -8,18 +8,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.receitas.databinding.FragmentRecipeDetailBinding
+import com.example.receitas.models.ShoppingListItem
 import com.example.receitas.viewmodels.RecipeDetailViewModel
+import com.example.receitas.viewmodels.ShoppingListViewModel
 
 class RecipeDetailFragment : Fragment() {
 
     private var _binding: FragmentRecipeDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: RecipeDetailViewModel by viewModels()
+    private val viewModel: RecipeDetailViewModel by activityViewModels()
+    private val shoppingListViewModel: ShoppingListViewModel by activityViewModels()
     private val args: RecipeDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -59,6 +62,18 @@ class RecipeDetailFragment : Fragment() {
                     }
                 } else {
                     binding.ingredientsTitle.isVisible = false
+                }
+
+                binding.addToShoppingListButton.setOnClickListener {
+                    val itemsToAdd = ingredients.map { (ingredient, measure) ->
+                        ShoppingListItem(
+                            id = System.currentTimeMillis(), // Unique ID
+                            ingredient = ingredient,
+                            measure = measure
+                        )
+                    }
+                    shoppingListViewModel.addItems(itemsToAdd)
+                    Toast.makeText(context, "Ingredientes adicionados à lista!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

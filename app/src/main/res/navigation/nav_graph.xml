@@ -19,6 +19,12 @@
             app:destination="@id/searchFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.example.receitas.fragments.ShoppingCartFragment"
+        android:label="Lista de Compras"
+        tools:layout="@layout/fragment_shopping_cart" />
+
     <!-- Placeholder Fragments for Bottom Nav -->
     <fragment android:id="@+id/randomRecipeFragment" android:label="Random" />
     <fragment android:id="@+id/favoritesFragment" android:label="Favorites" />

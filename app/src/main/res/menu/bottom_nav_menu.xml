@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_favorite"
         android:title="Favoritos" />
 
+    <item
+        android:id="@+id/shoppingCartFragment"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Compras" />
+
 </menu>
