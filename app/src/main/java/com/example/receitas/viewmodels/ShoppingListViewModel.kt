@@ -40,14 +40,26 @@ class ShoppingListViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun removeItem(item: ShoppingListItem) {
+        // Persiste a remoção no repositório
         repository.removeItem(item)
-        val currentList = _shoppingListItems.value?.toMutableList() ?: mutableListOf()
-        currentList.removeAll { it.id == item.id }
-        _shoppingListItems.value = currentList
+
+        // Atualiza a lista na UI de forma eficiente, removendo apenas um item
+        val currentList = _shoppingListItems.value?.toMutableList() ?: return
+        val index = currentList.indexOfFirst { it.id == item.id }
+        if (index != -1) {
+            currentList.removeAt(index)
+            _shoppingListItems.value = currentList
+        } else {
+            // Se, por algum motivo, o item não for encontrado, recarrega a lista
+            loadItems()
+        }
     }
 
     fun clearPurchasedItems() {
         repository.clearPurchasedItems()
-        loadItems()
+        // Atualiza a lista na UI para remover os itens comprados
+        val currentList = _shoppingListItems.value?.toMutableList() ?: return
+        currentList.removeAll { it.isChecked }
+        _shoppingListItems.value = currentList
     }
 }
