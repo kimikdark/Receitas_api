@@ -9,12 +9,16 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.example.receitas.R
 import com.example.receitas.databinding.FragmentRecipeDetailBinding
 import com.example.receitas.models.ShoppingListItem
+import com.example.receitas.viewmodels.FavoritesViewModel
 import com.example.receitas.viewmodels.RecipeDetailViewModel
 import com.example.receitas.viewmodels.ShoppingListViewModel
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 class RecipeDetailFragment : Fragment() {
@@ -24,11 +28,13 @@ class RecipeDetailFragment : Fragment() {
 
     private val viewModel: RecipeDetailViewModel by activityViewModels()
     private val shoppingListViewModel: ShoppingListViewModel by activityViewModels()
+    private val favoritesViewModel: FavoritesViewModel by activityViewModels()
     private val args: RecipeDetailFragmentArgs by navArgs()
 
     private var originalIngredients: Map<String, String> = emptyMap()
     private val originalPortions = 2 // Vamos assumir 2 porções como base
     private var currentPortions = originalPortions
+    private var currentIsFavorite = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,6 +59,21 @@ class RecipeDetailFragment : Fragment() {
 
                 originalIngredients = meal.getIngredients().toMap()
                 updateIngredientsUI()
+
+                // Observar estado de favorito
+                viewLifecycleOwner.lifecycleScope.launch {
+                    favoritesViewModel.isFavorite(meal.idMeal).collect { isFavorite ->
+                        currentIsFavorite = isFavorite
+                        updateFavoriteButton(isFavorite)
+                    }
+                }
+
+                // Toggle favorito
+                binding.fabFavorite.setOnClickListener {
+                    favoritesViewModel.toggleFavorite(meal, currentIsFavorite)
+                    val message = if (currentIsFavorite) "Removido dos favoritos" else "Adicionado aos favoritos"
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                }
 
                 binding.addToShoppingListButton.setOnClickListener {
                     val itemsToAdd = originalIngredients.map { (ingredient, measure) ->
@@ -130,6 +151,14 @@ class RecipeDetailFragment : Fragment() {
             parts[0].toDouble() / parts[1].toDouble()
         } else {
             fraction.toDouble()
+        }
+    }
+
+    private fun updateFavoriteButton(isFavorite: Boolean) {
+        if (isFavorite) {
+            binding.fabFavorite.setImageResource(R.drawable.ic_favorite_filled)
+        } else {
+            binding.fabFavorite.setImageResource(R.drawable.ic_favorite_border)
         }
     }
 

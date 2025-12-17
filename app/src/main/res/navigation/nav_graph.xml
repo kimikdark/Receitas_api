@@ -27,7 +27,16 @@
 
     <!-- Placeholder Fragments for Bottom Nav -->
     <fragment android:id="@+id/randomRecipeFragment" android:label="Random" />
-    <fragment android:id="@+id/favoritesFragment" android:label="Favorites" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.receitas.fragments.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favoritesFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
 
     <!-- Other Screens -->
     <fragment
