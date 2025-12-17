@@ -37,13 +37,11 @@ Para executar o projeto, clone o repositório e abra-o no Android Studio. As dep
 
 ## Desafios e Soluções
 
-Um dos principais desafios foi a gestão do estado da UI de forma assíncrona, especialmente durante o carregamento dos dados da API. A solução foi utilizar `Coroutines` com `LifecycleScope` para garantir que as requisições fossem canceladas quando o Fragment é destruído, evitando memory leaks.
-
-Outro desafio foi a apresentação da lista de ingredientes e medidas, que na API vêm em campos separados (`strIngredient1`, `strMeasure1`, etc.). A solução foi processar estes dados no `ViewModel` ou no `Fragment` para criar uma lista única de ingredientes antes de a apresentar na UI.
+Um dos principais desafios foi a apresentação da lista de ingredientes e medidas, que na API vêm em campos separados (`strIngredient1`, `strMeasure1`, etc.). A solução foi processar estes dados no `ViewModel` ou no `Fragment` para criar uma lista única de ingredientes antes de a apresentar na UI.
 
 ## Grupo
 
 - **Daniel Cocharro:**
-- **a27823@ipt.pt:** [Seu Email]
+- **a27823@ipt.pt:**
 - **Tatiana Mendes:**
-- **a27648@ipt.pt:** [Email do Colega]
+- **a27648@ipt.pt:**
