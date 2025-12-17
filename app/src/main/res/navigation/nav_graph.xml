@@ -26,7 +26,15 @@
         tools:layout="@layout/fragment_shopping_cart" />
 
     <!-- Placeholder Fragments for Bottom Nav -->
-    <fragment android:id="@+id/randomRecipeFragment" android:label="Random" />
+    <fragment
+        android:id="@+id/randomRecipeFragment"
+        android:name="com.example.receitas.fragments.RandomRecipeFragment"
+        android:label="Random"
+        tools:layout="@layout/fragment_random_recipe">
+        <action
+            android:id="@+id/action_randomRecipeFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favoritesFragment"
