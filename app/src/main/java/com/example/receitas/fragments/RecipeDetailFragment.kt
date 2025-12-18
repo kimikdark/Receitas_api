@@ -101,7 +101,11 @@ class RecipeDetailFragment : Fragment() {
             }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) { /* ... */ }
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.isVisible = isLoading
+            binding.scrollView.isVisible = !isLoading
+        }
+
         viewModel.error.observe(viewLifecycleOwner) { error ->
             if (error != null) {
                 Toast.makeText(context, error, Toast.LENGTH_LONG).show()
