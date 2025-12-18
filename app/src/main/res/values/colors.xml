@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Cores da App -->
-    <color name="orange_500">#FF7043</color> <!-- Laranja Principal -->
-    <color name="orange_700">#E64A19</color> <!-- Laranja Escuro para a Status Bar -->
-    <color name="colorAccent">#F27121</color>
+    <!-- Nova Paleta de Cores - Dourado e Castanho Quente -->
+    <color name="primary">#FFB300</color>      <!-- Amarelo Dourado Vibrante -->
+    <color name="primary_dark">#6D4C41</color> <!-- Castanho Quente (Tom de Café) -->
+
+    <!-- Tema Diurno (Light) -->
+    <color name="background_light">#F7F7F7</color>
+    <color name="text_on_light">#333333</color>
+
+    <!-- Tema Noturno (Dark) -->
+    <color name="background_dark">#121212</color>
+    <color name="text_on_dark">#E0E0E0</color>
 
     <!-- Cores Padrão -->
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_gray">#F5F5F5</color>
-
-    <!-- Cores Antigas (podem ser removidas mais tarde) -->
-    <color name="colorPrimary">#E94057</color>
-    <color name="colorPrimaryDark">#C32E42</color>
+    <color name="black">#FF000000</color>
 </resources>

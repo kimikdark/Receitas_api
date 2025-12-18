@@ -1,18 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme for Light Mode -->
     <style name="Base.Theme.Receitas" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Cor principal da App (Toolbar, etc.) -->
-        <item name="colorPrimary">@color/orange_500</item>
-        <!-- Cor da Status Bar -->
-        <item name="colorPrimaryVariant">@color/orange_700</item>
-        <!-- Cor do texto e ícones na Toolbar -->
+        <!-- Material 3 Color Attributes -->
+
+        <!-- Primary brand color (for buttons, FABs, etc.) -->
+        <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/white</item>
 
-        <!-- Cor de acento (para botões, etc.) -->
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- Surface colors (for backgrounds of cards, sheets, etc.) -->
+        <item name="colorSurface">@color/background_light</item>
+        <item name="colorOnSurface">@color/text_on_light</item>
 
-        <!-- Fundo da App -->
-        <item name="android:windowBackground">@color/light_gray</item>
+        <!-- General background color of the app -->
+        <item name="android:windowBackground">@color/background_light</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/primary_dark</item>
+
     </style>
 
     <style name="Theme.Receitas" parent="Base.Theme.Receitas" />

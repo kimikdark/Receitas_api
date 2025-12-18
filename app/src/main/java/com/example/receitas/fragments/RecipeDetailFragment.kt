@@ -124,7 +124,7 @@ class RecipeDetailFragment : Fragment() {
                 val newMeasure = calculateNewMeasure(measure, multiplier)
                 val textView = TextView(context).apply {
                     text = "- $ingredient ($newMeasure)"
-                    textSize = 16f
+                    textSize = 16f // Revertido para corrigir erro de compilação
                 }
                 binding.ingredientsContainer.addView(textView)
             }
