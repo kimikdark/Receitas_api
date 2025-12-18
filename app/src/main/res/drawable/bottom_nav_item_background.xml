@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Estado para o item selecionado -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <!-- Fundo dourado sólido -->
+            <solid android:color="@color/primary" />
+            <!-- Cantos arredondados para um look mais suave -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <!-- Estado para o item não selecionado (fundo transparente) -->
+    <item android:state_checked="false">
+        <color android:color="@android:color/transparent" />
+    </item>
+</selector>
